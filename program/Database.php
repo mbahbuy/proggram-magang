@@ -46,9 +46,10 @@ if( !empty( $_GET[ 'action' ] ) ) {
                             
                             $message = "<b>Pengaktifan Akun di</b>";
                             $message .= "<h1>WARKOP MBAH BUY.</h1>";
-                            $message .= "Selemat, anda berhasil membuat akun. Untuk mengaktifkan akun anda silahkan klik link dibawah ini. \r\n <a href='" . BASEURL . "activation.php?t=".$token."'>" . BASEURL . "activation.php?t=".$token."</a> ";
+                            $message .= "Selemat, anda berhasil membuat akun. Untuk mengaktifkan akun anda silahkan klik link dibawah ini.";
+                            $message .= " <a href='" . BASEURL . "activation.php?t=".$token."'>" . BASEURL . "activation.php?t=".$token."</a> ";
                             
-                            $header = "From:buyunggaluh@localhost \r\n";
+                            $header = "From:mbahbagonku@gmail.com \r\n";
                             $header .= "MIME-Version: 1.0\r\n";
                             $header .= "Content-type: text/html\r\n";
                             
