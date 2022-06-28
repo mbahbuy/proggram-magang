@@ -1,4 +1,4 @@
-<?php require_once 'program/Constant.php';?>
+<?php require_once 'program/Constant.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,6 +44,7 @@
             </select>
             <label for="trainingTime">Waktu Training:</label>
         </div>
+
         <div class="form-floating mt-3">
             <select class="form-select" id="trainingStart">
                 <option value="01" selected>Januari</option>
@@ -63,6 +64,12 @@
         </div>
 
         <button type="button" class="btn btn-primary mt-3 col-sm-3" id="book">Book</button>
+
+        <div class="row">
+            <div class="col-lg-6" id="notif">
+
+            </div>
+        </div>
 
     </div>
 
@@ -84,9 +91,11 @@ document.getElementById( 'book' ).onclick = function()
 
     var jsonData = JSON.stringify(data);
     var xhttp = new XMLHttpRequest();
-    // xhttp.onreadystatechange = function() {
-        
-    // };
+    xhttp.onreadystatechange = function(){
+        if( this.readyState == 4 && this.status == 200 ){
+            document.getElementById('notif').innerHTML = this.responseText;
+        };
+    };
     xhttp.open( "POST", "program/Database.php", true );
     xhttp.setRequestHeader( "Content-Type", "application/json" );
     xhttp.send( jsonData );
