@@ -65,7 +65,7 @@
 
         <button type="button" class="btn btn-primary mt-3 col-sm-3" id="book">Book</button>
 
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-lg-6" id="notif">
 
             </div>
