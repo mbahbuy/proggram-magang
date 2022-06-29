@@ -35,17 +35,11 @@ $sql = "INSERT INTO book( user_token, produk_id, book_timer, book_start, book_en
 ";
 
 if( $conn->query( $sql ) === true ) {
-    echo '
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Pendaftaran pelatihan berhasil.<br/>Silakan melengkapi Administrasi.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    ';
+    $alert['alert'] = 'success';
+    $alert['text'] = 'Pendaftaran pelatihan berhasil.<br/>Silakan melengkapi Administrasi.';
+    echo json_encode($alert);
 } else {
-    echo '
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Pendaftaran pelatihan gagal.<br/>Silakan melengkapi form pendaftaran dengan benar.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    ';
+    $alert['alert'] = 'warning';
+    $alert['text'] = 'Pendaftaran pelatihan gagal.<br/>Silakan melengkapi form pendaftaran dengan benar.';
+    echo json_encode($alert);
 }

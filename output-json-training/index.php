@@ -93,7 +93,12 @@ document.getElementById( 'book' ).onclick = function()
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if( this.readyState == 4 && this.status == 200 ){
-            document.getElementById('notif').innerHTML = this.responseText;
+
+            var notifPlace = document.getElementById('notif');
+            var dataphp = JSON.parse(this.responseText);
+            var text = document.createElement('div');
+            text.innerHTML = '<div class="alert alert-'+ dataphp.alert +' alert-dismissible fade show" role="alert">'+ dataphp.text +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+            notifPlace.appendChild(text);
         };
     };
     xhttp.open( "POST", "program/Database.php", true );
