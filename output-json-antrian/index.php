@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="assets/css/bootstrap.css">
 </head>
 <body>
+<div class="container">
+  <div class="row row justify-content-md-center mt-5">
+    <div class="col-md-auto mt-5 mb-5">
+      <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#formTombol">
+        Ambil Antrian
+      </button>
+    </div>
+  </div>
+</div>
+
 <div id="notif"></div>
 
 <div class="modal fade" id="formTombol" tabindex="-1" aria-labelledby="formTombolLabel" aria-hidden="true">
@@ -35,7 +45,7 @@
                 <option value="07">Poli Kangker</option>
                 <option value="08">Poli Psychology</option>
             </select>
-            <label for="menuKesehatan">Training dimulai pada bulan:</label>
+            <label for="menuKesehatan">Tes Kesehatan Ke :</label>
         </div>
 
       </div>
@@ -49,23 +59,24 @@
 
 <script src="assets/js/bootstrap.js"></script>
 <script>
-    function alerts( alert='danger', text='' )
+    function alerts( data = null ,alert = 'danger', texts = '' )
     {
+      if( data == null )
+      {
         var notifPlace = document.getElementById('notif');
         var text = document.createElement('div');
-        text.innerHTML = '<div class="alert alert-'+ alert +' alert-dismissible fade show" role="alert">'+ text +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+        text.innerHTML = '<div class="alert alert-'+ alert +' alert-dismissible fade show" role="alert">'+ texts +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
         text.classList.add('container');
         notifPlace.appendChild(text);
-    };
-    function tombol()
-    {
+      } else {
         var notifPlace = document.getElementById('notif');
         var text = document.createElement('div');
-        text.innerHTML = '<div class="row row justify-content-md-center mt-5"><div class="col-md-auto mt-5"><button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#formTombol">Ambil Antrian</button></div></div>';
+        text.innerHTML = '<div class="alert alert-'+ alert +' alert-dismissible fade show" role="alert">'+ texts +', Nomor Antrian Anda<br/><h2>' + data + '</h2></div>';
         text.classList.add('container');
         notifPlace.appendChild(text);
+      }
     };
-    tombol();
+
     document.getElementById('daftar').onclick = function()
     {
         // console.log( document.getElementById('nik').value );
@@ -79,8 +90,10 @@
         xhttp.onreadystatechange = function(){
             if( this.readyState == 4 && this.status == 200 ){
 
-                // var dataphp = JSON.parse(this.responseText);
-                alert(this.responseText);
+              var dataphp = JSON.parse(this.responseText);
+              // alert(this.responseText);
+
+              alerts(dataphp.data, dataphp.alert, dataphp.text);
 
             };
         };

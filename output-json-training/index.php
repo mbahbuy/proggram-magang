@@ -78,6 +78,23 @@
 
 <script src="assets/js/bootstrap.js"></script>
 <script>
+function notif( data = null, alert = 'danger', texts = '' )
+{
+    if( data == null )
+    {
+        var notifPlace = document.getElementById('notif');
+        var text = document.createElement('div');
+        text.innerHTML = '<div class="alert alert-'+ alert +' alert-dismissible fade show" role="alert">'+ texts +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+        text.classList.add('container');
+        notifPlace.appendChild(text);
+    } else{
+        var notifPlace = document.getElementById('notif');
+        var text = document.createElement('div');
+        text.innerHTML = '<div class="alert alert-'+ alert +' alert-dismissible fade show" role="alert">'+ texts + '<br/>' + data + '</div>';
+        text.classList.add('container');
+        notifPlace.appendChild(text);
+    }
+};
 
 document.getElementById( 'book' ).onclick = function()
 {
@@ -94,11 +111,9 @@ document.getElementById( 'book' ).onclick = function()
     xhttp.onreadystatechange = function(){
         if( this.readyState == 4 && this.status == 200 ){
 
-            var notifPlace = document.getElementById('notif');
             var dataphp = JSON.parse(this.responseText);
-            var text = document.createElement('div');
-            text.innerHTML = '<div class="alert alert-'+ dataphp.alert +' alert-dismissible fade show" role="alert">'+ dataphp.text +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-            notifPlace.appendChild(text);
+            notif( dataphp.data, dataphp.alert, dataphp.text );
+            // alert( this.responseText );
         };
     };
     xhttp.open( "POST", "program/Database.php", true );
