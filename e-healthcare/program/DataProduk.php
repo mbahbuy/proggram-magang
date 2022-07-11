@@ -86,7 +86,7 @@ if( empty( $_GET['poli'] ) && empty( $_GET['name'] ) )
             $data['harga'] = 'Rp ' . number_format( $x['produk_harga'], 0, ',', '.' );;
             $datafix[] = $data;
         }
-        echo json_encode( $data );
+        echo json_encode( $datafix );
     } else {
         $data['data'] = 'null';
         echo json_encode( $data );
